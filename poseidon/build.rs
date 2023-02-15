@@ -12,12 +12,13 @@ use poseidon_paramgen::poseidon_build;
 fn main() {
     let security_level = match env::var("SECURITY_LEVEL") {
         Ok(level) => match level.as_str() {
+            "32" => 32,
             "80" => 80,
             "128" => 128,
             "256" => 256,
             _ => panic!("Unsupported security level. Supported levels: 80, 128, 256"),
         },
-        Err(_) => 128,
+        Err(_) => 32,
     };
 
     // t = arity + 1, so t=2 is a 1:1 hash, t=3 is a 2:1 hash etc
