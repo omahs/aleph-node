@@ -34,7 +34,7 @@ macro_rules! n_to_one {
 
 n_to_one!(1, "one");
 n_to_one!(2, "two");
-// n_to_one!(4, "four");
+n_to_one!(4, "four");
 
 fn to_ark_sponge_poseidon_parameters(
     params: PoseidonParameters<Fr>,
