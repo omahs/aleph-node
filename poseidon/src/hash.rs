@@ -6,6 +6,7 @@ use crate::{domain_separator, parameters::*};
 macro_rules! n_to_one {
     ($n: literal, $n_as_word: literal) => {
         paste! {
+            /// Compute Poseidon hash for `input`.
             pub fn [<$n_as_word _to_one_hash>] (input: [Fr; $n]) -> Fr {
                 let parameters = [<rate_ $n>]::<Fr>();
                 let mut state = poseidon_permutation::Instance::new(&parameters);
@@ -17,4 +18,4 @@ macro_rules! n_to_one {
 
 n_to_one!(1, "one");
 n_to_one!(2, "two");
-n_to_one!(4, "four");
+// n_to_one!(4, "four");

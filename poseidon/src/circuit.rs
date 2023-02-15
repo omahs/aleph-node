@@ -15,6 +15,7 @@ type FpVar = ark_r1cs_std::fields::fp::FpVar<Fr>;
 macro_rules! n_to_one {
     ($n: literal, $n_as_word: literal) => {
         paste! {
+            /// Compute Poseidon hash of `input`.
             pub fn [<$n_as_word _to_one_hash>] (cs: ConstraintSystemRef<Fr>, input: [FpVar; $n]) -> Result<FpVar, SynthesisError> {
                 let parameters = [<rate_ $n>]::<Fr>();
 
@@ -33,7 +34,7 @@ macro_rules! n_to_one {
 
 n_to_one!(1, "one");
 n_to_one!(2, "two");
-n_to_one!(4, "four");
+// n_to_one!(4, "four");
 
 fn to_ark_sponge_poseidon_parameters(
     params: PoseidonParameters<Fr>,
