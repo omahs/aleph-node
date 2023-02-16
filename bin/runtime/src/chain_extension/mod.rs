@@ -61,7 +61,7 @@ impl ChainExtension<Runtime> for BabyLiminalChainExtension {
             POSEIDON => {
                 let res = liminal_ark_poseidon::hash::two_to_one_hash([0u64.into(), 0u64.into()]);
                 error!("Computed poseidon: {res:?}");
-                Ok(RetVal::Converging(0))
+                Ok(RetVal::Converging(10_000))
             }
             _ => {
                 error!("Called an unregistered `func_id`: {}", func_id);
