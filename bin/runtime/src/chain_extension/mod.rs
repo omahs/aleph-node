@@ -20,6 +20,8 @@ mod tests;
 pub const BABY_LIMINAL_STORE_KEY_FUNC_ID: u32 = 41;
 pub const BABY_LIMINAL_VERIFY_FUNC_ID: u32 = 42;
 
+pub const POSEIDON: u32 = 43;
+
 // Return codes for `BABY_LIMINAL_STORE_KEY_FUNC_ID`.
 pub const BABY_LIMINAL_STORE_KEY_OK: u32 = 10_000;
 pub const BABY_LIMINAL_STORE_KEY_TOO_LONG_KEY: u32 = 10_001;
@@ -55,6 +57,11 @@ impl ChainExtension<Runtime> for BabyLiminalChainExtension {
             }
             BABY_LIMINAL_VERIFY_FUNC_ID => {
                 Self::baby_liminal_verify::<_, Runtime>(env.buf_in_buf_out())
+            }
+            POSEIDON => {
+                let res = liminal_ark_poseidon::hash::two_to_one_hash([0u64.into(), 0u64.into()]);
+                error!("Computed poseidon: {res:?}");
+                Ok(RetVal::Converging(0))
             }
             _ => {
                 error!("Called an unregistered `func_id`: {}", func_id);

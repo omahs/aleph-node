@@ -87,6 +87,9 @@ pub trait BabyLiminalExtension {
         input: Vec<u8>,
         system: ProvingSystem,
     );
+
+    #[ink(extension = 43, returns_result = false)]
+    fn run_poseidon();
 }
 
 #[derive(Debug, Clone, PartialEq, Eq)]
